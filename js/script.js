@@ -12,7 +12,6 @@ function startGame() {
     // 1. 
     const gridSize= difficultchoice(document.getElementById('difficulty').value);
     const dimension = dimensionsHeW(gridSize);
-    const gridArray = generateGridNumbers(gridSize);
    
 
     // 2. Per ogni numero creo
@@ -20,10 +19,10 @@ function startGame() {
     const gridContainer = document.querySelector(".container");
     gridContainer.innerHTML = "";
 
-    for (let i = 0; i < gridArray.length; i++) {
-        const thisNumber = gridArray[i];
+    for (let i = 0; i < gridSize; i++) {
 
-        const domElement = generateBox(thisNumber,dimension)
+
+        const domElement = generateBox(i+1,dimension)
 
 
 
@@ -57,33 +56,6 @@ function dimensionsHeW(size){
       
         return 7;
     }
-}
-/**
- * @param {any} gridNumberQuantity -> la quantità di numeri casuli in ordine da 1 al valore dato
- * @returns {any} -> array di numeri generati
- */
-function generateGridNumbers(gridNumberQuantity) {
-    // creare l'array
-    const numberArray = [];
-
-
-    // Creao i numeri random tramite while 
-    while (numberArray.length < gridNumberQuantity) {
-        // 1. genero il numero random 
-        const rndNumber = getRndInteger(1, gridNumberQuantity);
-
-        // 2. se il numero non è all'interno dell'array, allora lo pusho
-        if ( !numberArray.includes(rndNumber) ) {
-            numberArray.push(rndNumber);
-        }
-    }
-    
-    return numberArray;
-}
-
-
-function getRndInteger(min, max) {
-    return Math.floor(Math.random() * (max - min + 1) ) + min;
 }
 
 
